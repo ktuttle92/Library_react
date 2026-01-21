@@ -1,10 +1,15 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import {createRoot} from 'react-dom/client';
 import './index.css';
-import App from './App';
+import App from './App.jsx';
 import reportWebVitals from './reportWebVitals';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faBars, faShoppingCart, faTimes, faBolt,faBookOpen,faTags,faStar,faStarHalfAlt,faLongArrowAltLeft} from '@fortawesome/free-solid-svg-icons';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+library.add(faBars, faShoppingCart, faTimes,faBolt,faBookOpen,faTags,faStar,faStarHalfAlt,faLongArrowAltLeft)
+
+const container=document.getElementById('root')
+const root = createRoot(container);
 root.render(
   <React.StrictMode>
     <App />
