@@ -20,7 +20,7 @@ function App() {
       return item.id === book.id ?
         {...item,quantity:+quantity,
           }
-         : {item}
+         : {item},console.log(setCart)
    }))}
     
    
