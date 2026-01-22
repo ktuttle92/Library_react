@@ -6,8 +6,7 @@ import Nav from "../Components/Nav"
 import Footer from "../Components/Footer"
 import Rating from "../Components/ui/Rating"
 import Price from '../Components/ui/Price'
-import Books from './Books'
-import App from '../App'
+
 
 const BookInfo=({books, addToCart,cart})=>{
     const {id}=useParams()
@@ -48,7 +47,7 @@ const BookInfo=({books, addToCart,cart})=>{
                                     <p className="book__summary--para">Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus nam fugit similique recusandae porro ipsa magnam dolorem ratione sed. Eos, unde dignissimos. Libero eveniet odio reiciendis a ea officiis nisi.</p>
                                     <p className="book__summary--para">Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus nam fugit similique recusandae porro ipsa magnam dolorem ratione sed. Eos, unde dignissimos. Libero eveniet odio reiciendis a ea officiis nisi.</p>
                             </div>
-                            {bookExistsInCart ? (
+                            {bookExistsInCart() ? (
                                 <Link to={`/cart`} className="book__link">
                                     <button className="btn">Checkout Now</button>
                                 </Link>):(

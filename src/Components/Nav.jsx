@@ -4,7 +4,7 @@ import LibraryLogo from '../assets/Library.svg'
 import {Link} from 'react-router-dom'
 
 // import assets from '../assets'
-const Nav = () => {
+const Nav = ({cart}) => {
     function OpenMenu(){
         document.body.classList+=" menu--open"
     }
