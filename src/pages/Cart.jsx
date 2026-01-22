@@ -1,19 +1,17 @@
-import Nav from "../Components/Nav"
-import Footer from "../Components/Footer"
-import React, {useState,useEffect} from 'react'
+import EmptyCart from "../assets/empty_cart.svg"
+import {Link} from 'react-router-dom' 
 
-
-const Cart=({cart,changeQuantity,})=>{
+const Cart=({cart,changeQuantity,removeBook})=>{
     const total=()=>{
         let price =0;
         cart.forEach((item)=>{
             price += +(
-                ((item.salePrice||item.originalPrice) * item.quantity).toFixed(2))});
+                (item.salePrice||item.originalPrice) * item.quantity)});
             return price}
         
   
     return(<>
-     <Nav/>
+
      <div id="books__body">
         <main id="books__main">
              <div className="books__container">
@@ -28,14 +26,14 @@ const Cart=({cart,changeQuantity,})=>{
                             <span className="cart__total">Price</span>
                         </div>
                         <div className="cart__body">
-                            {cart && cart.length > 0 ? (cart.map(book=>(
+                            {cart.map(book=>{return(
                             <div className="cart__item" key={book.id}>
                                 <div className="cart__book">
                                     <img src={book.url} alt="" className="cart__book--img"/>
                                     <div className="cart__book--info">
                                         <span className="cart__book--title">{book.title}</span>
-                                        <span className="cart__book--price">${(+book.salePrice||+book.originalPrice).toFixed(2)}</span>
-                                        <button className="cart__book--remove">Remove</button>
+                                        <span className="cart__book--price">${(book.salePrice||book.originalPrice).toFixed(2)}</span>
+                                        <button className="cart__book--remove" onClick={()=>removeBook(book)}>Remove</button>
                                     </div>
                                 </div>
                                 <div className="cart__quantity">
@@ -44,17 +42,26 @@ const Cart=({cart,changeQuantity,})=>{
                                     min={0} 
                                     max={99} 
                                     className="cart__input" 
-                                    onChange={(event)=>changeQuantity(book,event.target.value)} value={+book.quantity} key={book.id}></input>
+                                    onChange={(event)=>changeQuantity(book,event.target.value)} value={book.quantity}></input>
                                 </div>
                                 <div className="cart__total">
-                                ${(+(book.salePrice||book.originalPrice) * +book.quantity).toFixed(2)}
+                                ${((book.salePrice||book.originalPrice) * book.quantity).toFixed(2)}
                                 </div>
                             </div>
-                            ))) : (<div>No items in the cart</div>)
-                            }
+                            )})}
                         </div>
+                        {cart.length === 0 &&(
+                        <div className="cart__empty">
+                            <img src={EmptyCart} className="cart__empty--img"/>
+                            <h2>You don't have any books in your cart!</h2>
+                            <Link to="/books">
+                            <button className="btn">Browse books</button>
+                            </Link>
+                        </div>
+                        )}
                     </div>
-                    <div className="total">
+                    {cart.length > 0 && (
+                        <div className="total">
                         <div className="total__item total__sub-total">
                             <span>Subtotal</span>
                             <span>${(total() * .93).toFixed(2)}</span>
@@ -71,13 +78,13 @@ const Cart=({cart,changeQuantity,})=>{
                         onClick={()=>alert("Haven't gotten around to this yet")}>
                             Proceed to checkout
                         </div>
-                    </div>
+                    </div>)}
                </div>
               </div>
         </main>
      </div>
       
-     <Footer/>
+
     </>)
 }
 

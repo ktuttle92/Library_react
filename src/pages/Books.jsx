@@ -1,6 +1,4 @@
 import Book from '../Components/ui/Book';
-import Nav from "../Components/Nav"
-import Footer from "../Components/Footer"
 import React,{useState} from 'react'
 
 const Books=({books: initialBooks})=>{
@@ -23,8 +21,7 @@ const Books=({books: initialBooks})=>{
     }
     return(
         <div id="books__body">
-            <Nav/>
-            <main id="books__main">
+              <main id="books__main">
                 <section>
                     <div className="books__container">
                         <div className="row">
@@ -45,8 +42,7 @@ const Books=({books: initialBooks})=>{
                     </div>
                 </section>
             </main>
-            <Footer/>
-        </div>
+          </div>
     )
 }
 

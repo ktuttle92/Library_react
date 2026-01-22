@@ -2,8 +2,6 @@ import React,{useState} from 'react'
 import {Link, useParams} from 'react-router-dom'
 import Book from '../Components/ui/Book'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Nav from "../Components/Nav"
-import Footer from "../Components/Footer"
 import Rating from "../Components/ui/Rating"
 import Price from '../Components/ui/Price'
 
@@ -19,7 +17,6 @@ const BookInfo=({books, addToCart,cart})=>{
       return cart.some(book => book.id === +id);}
 
     return(<div id="books__body">
-        <Nav/>
         <main id="books__main">
             <div className="books__container">
                 <div className="row">
@@ -70,7 +67,7 @@ const BookInfo=({books, addToCart,cart})=>{
                 </div>
             </div>
         </main>  
-        <Footer/>
+
     </div>)
 }
 
